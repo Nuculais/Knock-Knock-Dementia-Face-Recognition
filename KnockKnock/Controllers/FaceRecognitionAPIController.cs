@@ -14,10 +14,12 @@ namespace KnockKnock.Controllers
 
         Models.FaceRecData facesInfo = new Models.FaceRecData();
 
-        //public void CreateGroup()
-        //{
-        //    facesInfo.CreatePersonGroup();
-        //}
+
+        //Controller for creating main group function
+        public void CreateKnownContactsGroupController()
+        {
+           // Models.FaceRecData.CreateKnownContactsGroup(); //Static
+        }
 
         // GET: api/<controller>
         [HttpGet]

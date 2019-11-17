@@ -21,46 +21,11 @@ namespace KnockKnock.Models
 
 
 
-        private readonly Microsoft.Azure.CognitiveServices.Vision.Face.IFaceClient faceClient = new FaceClient(
-            new ApiKeyServiceClientCredentials("<subscription key>"),
+        public readonly Microsoft.Azure.CognitiveServices.Vision.Face.IFaceClient faceClient = new FaceClient(
+            new ApiKeyServiceClientCredentials("b341f1bd643b4c93bc05165659922eef"),
             new System.Net.Http.DelegatingHandler[] { });
 
 
-        public void createPersonGroup()
-        {
-            //string personGroupId = "myfriends";
-            //await faceClient.PersonGroup.CreateAsync(personGroupId, "My Friends");
-            //CreatePersonResult friend1 = await faceClient.PersonGroupPerson.CreateAsync(
-            //    // Id of the PersonGroup that the person belonged to
-            //    personGroupId,
-            //    // Name of the person
-            //    "Anna"
-            //);
-
-            HttpClient client = new HttpClient();
-        }
-
-        static async void MakeRequest()
-        {
-            var client = new HttpClient();
-            var queryString = HttpUtility.ParseQueryString(string.Empty);
-
-            // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "b341f1bd643b4c93bc05165659922eef");
-
-            var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/persongroups/family?" + queryString;
-
-            HttpResponseMessage response;
-
-            // Request body
-            byte[] byteData = Encoding.UTF8.GetBytes("{body}");
-
-            using (var content = new ByteArrayContent(byteData))
-            {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response = await client.PutAsync(uri, content);
-            }
-        }
 
 
 
