@@ -11,8 +11,13 @@ namespace KnockKnock.Controllers
     [Route("api/[controller]")]
     public class FaceRecognitionAPIController : Controller
     {
+
         Models.FaceRecData facesInfo = new Models.FaceRecData();
 
+        //public void CreateGroup()
+        //{
+        //    facesInfo.CreatePersonGroup();
+        //}
 
         // GET: api/<controller>
         [HttpGet]

@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.Azure.CognitiveServices.Vision.Face;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Web;
+using Flurl;
+using Flurl.Http;
 
 namespace KnockKnock.Models
 {
@@ -34,39 +38,75 @@ namespace KnockKnock.Models
             //);
 
             HttpClient client = new HttpClient();
-
-
-
         }
-            
 
-            
-
-
-        private static async Task<string> CreatePersonGroup(string groupname)
+        static async void MakeRequest()
         {
-            var url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + groupname;
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
 
-            using (var client = new HttpClient())
+            // Request headers
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "b341f1bd643b4c93bc05165659922eef");
+
+            var uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/persongroups/family?" + queryString;
+
+            HttpResponseMessage response;
+
+            // Request body
+            byte[] byteData = Encoding.UTF8.GetBytes("{body}");
+
+            using (var content = new ByteArrayContent(byteData))
             {
-                client.BaseAddress = new Uri(url);
-
-                HttpResponseMessage response = await client.GetAsync(url);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string strResult = await response.Content.ReadAsStringAsync();
-
-                    return strResult;
-                }
-                else
-                {
-                    return null;
-                }
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response = await client.PutAsync(uri, content);
             }
         }
 
-       // var result = 
+
+
+        //public async void CreatePersonGroup()
+        //{
+        //    //groupname = "family"
+        //    var flurl = new FlurlClient();
+        //    var response = await "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/"
+        //    .WithClient(flurl)
+        //    .AppendPathSegment("family")
+        //    //.SetQueryParams(new { a = 1, b = 2 })
+        //    .WithOAuthBearerToken("b341f1bd643b4c93bc05165659922eef")
+        //    .PostJsonAsync(new
+        //    {
+        //        first_name = "Claire",
+        //        last_name = "Underwood"
+        //    })
+        //    .ReceiveJson();
+        //} 
+
+
+
+        //    private static async Task<string> CreatePersonGroup(string groupname)
+        //    {
+        //        var url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + groupname;
+
+        //        using (var client = new HttpClient())
+        //        {
+        //            client.BaseAddress = new Uri(url);
+
+        //            HttpResponseMessage response = await client.GetAsync(url);
+
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                string strResult = await response.Content.ReadAsStringAsync();
+
+        //                return strResult;
+        //            }
+        //            else
+        //            {
+        //                return null;
+        //            }
+        //        }
+        //    }
+
+        //   // var result = 
 
     }
 
