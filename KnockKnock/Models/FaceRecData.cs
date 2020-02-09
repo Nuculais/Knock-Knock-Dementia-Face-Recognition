@@ -19,10 +19,12 @@ namespace KnockKnock.Models
         //Key 1: b341f1bd643b4c93bc05165659922eef
         //Key 2: 3d502cae05d245e19411185a74df2b49
 
+        //Nyckel 1: 0faaa65a3890424db9f966bf52ebe0d5
+        //Nyckel 2: cd63ef9f9387440fa928dacbfef89c2d
 
 
         public readonly Microsoft.Azure.CognitiveServices.Vision.Face.IFaceClient faceClient = new FaceClient(
-            new ApiKeyServiceClientCredentials("b341f1bd643b4c93bc05165659922eef"),
+            new ApiKeyServiceClientCredentials("0faaa65a3890424db9f966bf52ebe0d5"),
             new System.Net.Http.DelegatingHandler[] { });
 
 
